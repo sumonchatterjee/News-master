@@ -4,5 +4,6 @@ This app is basically responsible for pulling out the news from new-api. The app
 Works offline also.. Room database is used
 
 Language used - Kotlin
+Archeitectue used - MVVM
 Room / Dagger / Retrofit / Coroutine
 
