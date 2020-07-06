@@ -5,8 +5,6 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import com.sample.newsapp.R
 import com.sample.newsapp.core.ui.base.BaseActivity
-import com.sample.newsapp.core.utils.getViewModel
-import com.sample.newsapp.news.ui.viewmodel.NewsArticleViewModel
 import kotlinx.android.synthetic.main.activity_news_detail.*
 
 
@@ -19,6 +17,9 @@ class NewsDetailActivity: BaseActivity() {
         getDataFromIntent()
     }
 
+    /**
+     * get url of the news item and open in web view
+     */
 
     private fun getDataFromIntent(){
         if(intent!=null){

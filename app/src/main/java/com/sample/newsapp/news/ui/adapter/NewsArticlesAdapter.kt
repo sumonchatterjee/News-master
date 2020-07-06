@@ -11,14 +11,12 @@ import com.sample.newsapp.R
 import com.sample.newsapp.core.utils.inflate
 import com.sample.newsapp.news.model.NewsArticles
 import com.sample.newsapp.news.ui.activity.NewsDetailActivity
-import com.sample.newsapp.news.ui.model.NewsAdapterEvent
 import kotlinx.android.synthetic.main.row_news_article.view.*
 
 /**
  * The News adapter to show the news in a list.
  */
-class NewsArticlesAdapter(
-        private val listener: (NewsAdapterEvent) -> Unit) : ListAdapter<NewsArticles, NewsArticlesAdapter.NewsHolder>(DIFF_CALLBACK) {
+class NewsArticlesAdapter() : ListAdapter<NewsArticles, NewsArticlesAdapter.NewsHolder>(DIFF_CALLBACK) {
 
     /**
      * Inflate the view
@@ -28,7 +26,7 @@ class NewsArticlesAdapter(
     /**
      * Bind the view with the data
      */
-    override fun onBindViewHolder(newsHolder: NewsHolder, position: Int) = newsHolder.bind(getItem(position), listener)
+    override fun onBindViewHolder(newsHolder: NewsHolder, position: Int) = newsHolder.bind(getItem(position))
 
     /**
      * View Holder Pattern
@@ -36,12 +34,12 @@ class NewsArticlesAdapter(
     class NewsHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         /**
-         * Binds the UI with the data and handles clicks
+         * Binds the UI with the data
          */
-        fun bind(newsArticle: NewsArticles, listener: (NewsAdapterEvent) -> Unit) = with(itemView) {
+        fun bind(newsArticle: NewsArticles) = with(itemView) {
             newsTitle.text = newsArticle.title
             newsAuthor.text = newsArticle.author
-            //TODO: need to format date
+
             //tvListItemDateTime.text = getFormattedDate(newsArticle.publishedAt)
             newsPublishedAt.text = newsArticle.publishedAt
             newsImage.load(newsArticle.urlToImage) {
@@ -53,7 +51,10 @@ class NewsArticlesAdapter(
         }
 
 
-        fun navigateNext(url:String?){
+        /**
+         * navigate to detail page
+         */
+        private fun navigateNext(url:String?){
             if(!url.isNullOrEmpty()){
 
                 val intent = Intent(itemView.context,NewsDetailActivity::class.java);

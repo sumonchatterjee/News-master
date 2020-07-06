@@ -29,7 +29,7 @@ class NewsActivity : BaseActivity() {
         newsList.setEmptyView(empty_view)
         newsList.setProgressView(progress_view)
 
-        val adapter = NewsArticlesAdapter { toast("Clicked on item") }
+        val adapter = NewsArticlesAdapter()
         newsList.adapter = adapter
         newsList.layoutManager = LinearLayoutManager(this)
 
